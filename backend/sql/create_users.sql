@@ -1,0 +1,9 @@
+CREATE TABLE public.users(
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT users_username_not_blank
+        CHECK (length(trim(username)) > 0)
+);

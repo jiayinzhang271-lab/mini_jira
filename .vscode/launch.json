@@ -1,0 +1,23 @@
+{
+    "version":"0.2.0",
+    "configurations": [
+        {
+            "name": "调试 Mini-Jira 后端",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "python": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+            "cwd": "${workspaceFolder}/backend",
+            "args": [
+                "app.main:app",
+                "--host",
+                "127.0.0.1",
+                "--port",
+                "8000"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,       // 核心：允许进入第三方库
+            //"debugStdLib": true        // 可选：允许进入标准库
+        }
+    ]
+}

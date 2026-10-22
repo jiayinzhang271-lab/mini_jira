@@ -1,0 +1,14 @@
+#.toml 是 TOML 格式的配置文件，全称 Tom's Obvious, Minimal Language。它不是程序代码文件，而是一种纯文本配置格式，用来存配置数据，类似 .ini、.yaml、.json，但更强调易读、明确、少歧义。
+# 注释就是每行前面加一个# 没有段落注释
+# 常见用途
+# Python 项目：pyproject.toml，现在 Python 打包、依赖、工具配置的主流文件；Rust 项目：Cargo.toml；一些静态站点、构建工具、应用配置；替代 setup.py、setup.cfg、部分 requirements 配置
+
+[project]
+name = "mini-jira-backend"
+version = "0.1.0"
+description = "Mini-Jira task management API"
+requirement-python = ">=3.10"
+dependencies = [
+    "fastapi[standard]",
+    "pwdlib[argon2]",
+]

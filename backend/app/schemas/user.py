@@ -20,3 +20,7 @@ class UserRead(BaseModel):
 class UserLogin(BaseModel):
     username: str = Field(min_length=1, max_length=50)
     password: SecretStr = Field(min_length=1, max_length=128)
+
+class TokenRead(BaseModel):
+    access_token: str
+    token_type: str = "bearer"

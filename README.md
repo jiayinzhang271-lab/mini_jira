@@ -17,6 +17,11 @@ python -c "import sys; print(sys.executable)"
 '''
 pip show fastapi
 '''
+
+启动这个fastapi服务：
+python -m uvicorn app.main:app --reload
+
+
 ## 什么是pydantic
 是一个广泛使用的 Python 数据验证库，专注于通过 类型提示 实现高效的数据验证和序列化。它允许开发者以直观的方式定义数据模型，并自动验证输入数据的类型和格式，从而提高代码的安全性和可维护性。
 类型注解：类型注解在这里发挥了非常重要的作用

@@ -5,6 +5,7 @@ from psycopg.errors import UniqueViolation
 from app.db import get_db
 from app.schemas.user import UserCreate,UserRead
 from app.security import hash_password
+from app.dependencies import get_current_user
 
 router = APIRouter(prefix="/users", tags=["用户"])
 
@@ -40,3 +41,16 @@ def register_user(
             detail="用户名已存在",
         )
     return saved_user
+
+@router.get(
+    "/me",
+    summary="查询当前登录用户",
+    response_model=UserRead,
+)
+def read_current_user(
+    current_user: UserRead = Depends(
+        get_current_user,
+        scope="function",
+    ),
+):
+    return current_user

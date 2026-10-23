@@ -11,4 +11,5 @@ requirement-python = ">=3.10"
 dependencies = [
     "fastapi[standard]",
     "pwdlib[argon2]",
+    "PyJWT"
 ]

@@ -17,6 +17,7 @@ class DatabaseSettings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parent.parent / ".env",
         env_file_encoding="utf-8",
+        extra="ignore"
     )
     '''
         先根据 model_config 找到 .env 文件，读取里面的键值对，同时也会看当前进程的环境变量。然后拿类里声明的字段名去匹配：

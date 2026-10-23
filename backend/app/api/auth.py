@@ -2,8 +2,12 @@ import psycopg
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.db import get_db
-from app.schemas.user import UserRead, UserLogin
-from app.security import hash_password, verify_password
+from app.schemas.user import UserRead, UserLogin, TokenRead
+from app.security import (
+    hash_password,
+    verify_password,
+    create_access_token,
+    )
 
 router = APIRouter(prefix="/auth", tags=["认证"])
 
@@ -11,8 +15,8 @@ DUMMY_PASSWORD_HASH = hash_password("dummy-password-for-verification")
 
 @router.post(
     "/login",
-    summary="登陆验证",
-    response_model=UserRead,
+    summary="用户登录",
+    response_model=TokenRead,
 )
 def login(
     credentials: UserLogin,
@@ -44,8 +48,11 @@ def login(
             detail="用户名或密码错误",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    return {
+    """ return {
         "id": saved_user["id"],
         "username": saved_user["username"],
         "created_at": saved_user["created_at"],
-    }
+    }"""
+    return TokenRead(
+        access_token=create_access_token(saved_user["id"]),
+    )
